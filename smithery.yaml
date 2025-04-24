@@ -1,0 +1,13 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - uptimeAPIKey
+    properties:
+      uptimeAPIKey:
+        type: string
+        description: The API Key for your Uptime Agent account.
+  commandFunction:
+    |-
+    (config) => ({ command: 'node', args: ['dist/index.js'], env: { UPTIME_API_KEY: config.uptimeAPIKey } })
