@@ -1,7 +1,7 @@
 {
-  "name": "uptime-agent-model-context-protocol-server",
+  "name": "uptime-agent-mcp",
   "version": "0.0.1",
-  "description": "MCP Server for Uptime Agent",
+  "description": "MCP Server for uptime-agent.io",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -16,7 +16,7 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.7.0",
+    "@modelcontextprotocol/sdk": "^1.10.2",
     "@types/node": "^22"
   },
   "devDependencies": {

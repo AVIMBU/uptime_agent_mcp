@@ -3,6 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
 [![Model Context Protocol](https://img.shields.io/badge/MCP-Compliant-orange)](https://modelcontextprotocol.io/)
+[![smithery badge](https://smithery.ai/badge/@AVIMBU/uptime_agent_mcp)](https://smithery.ai/server/@AVIMBU/uptime_agent_mcp)
 [![Install with VS Code](https://img.shields.io/badge/VS_Code-Install-0098FF?style=flat&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=uptime-agent&inputs=%5B%7B%22type%22%3A%22promptString%22%2C%22id%22%3A%22uptime_api_key%22%2C%22description%22%3A%22Uptime%20Agent%20API%20Key%22%2C%22password%22%3Atrue%7D%5D&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22uptime-agent-mcp%22%5D%2C%22env%22%3A%7B%22UPTIME_API_KEY%22%3A%22%24%7Binput%3Auptime_api_key%7D%22%7D%7D)
 
 Connect your [Uptime Agent](https://uptime-agent.io) monitoring system directly to AI assistants like Claude through the Model Context Protocol (MCP).
