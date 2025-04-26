@@ -22,7 +22,7 @@
     "watch": "tsc --watch",
     "start": "node dist/index.js",
     "setup": "npm install && npm run build && node setup-claude-server.js",
-    "setup:debug": "npm install && npm run build && node setup-claude-server.js --debug",
+    "setup:debug": "npm install && npm run build && node setup-claude-server.js --debug"
   },
   "publishConfig": {
     "access": "public"
