@@ -4,17 +4,30 @@
   "description": "MCP Server for uptime-agent.io",
   "license": "MIT",
   "type": "module",
+  "homepage": "https://uptime-agent.io",
+  "author": "AVIMBU",
   "bin": {
-    "mcp-uptime-agent-server": "dist/index.js"
+    "uptime-agent-mcp": "dist/index.js",
+    "setup": "dist/setup-claude-server.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc && shx chmod +x dist/*.js",
+    "build": "tsc && shx cp setup-claude-server.js dist/ && shx chmod +x dist/*.js",
     "prepare": "npm run build",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "setup": "npm install && npm run build && node setup-claude-server.js",
+    "setup:debug": "npm install && npm run build && node setup-claude-server.js --debug"
   },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "terminal",
+    "claude",
+    "ai",
+    "uptime-monitoring"
+  ],
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
     "@types/node": "^22"

@@ -1,0 +1,23 @@
+2025-04-26T08:48:36.272Z - Successfully added MCP server to Claude configuration!
+2025-04-26T08:48:36.275Z - Configuration location: /Users/michaelwapp/Library/Application Support/Claude/claude_desktop_config.json
+2025-04-26T08:48:36.275Z - 
+To use the server:
+1. Restart Claude if it's currently running
+2. The server will be available as "uptime-agent" in Claude's MCP server list
+2025-04-26T08:48:39.368Z - Claude has been restarted.
+2025-04-26T08:51:05.727Z - Successfully added MCP server to Claude configuration!
+2025-04-26T08:51:05.730Z - Configuration location: /Users/michaelwapp/Library/Application Support/Claude/claude_desktop_config.json
+2025-04-26T08:51:05.730Z - Your uptime-agent.io API key has been configured.
+2025-04-26T08:51:05.731Z - 
+To use the server:
+1. Restart Claude if it's currently running
+2. The server will be available as "uptime-agent" in Claude's MCP server list
+2025-04-26T08:51:08.841Z - Claude has been restarted.
+2025-04-26T08:52:51.808Z - Successfully added MCP server to Claude configuration!
+2025-04-26T08:52:51.810Z - Configuration location: /Users/michaelwapp/Library/Application Support/Claude/claude_desktop_config.json
+2025-04-26T08:52:51.810Z - Your uptime-agent.io API key has been configured.
+2025-04-26T08:52:51.811Z - 
+To use the server:
+1. Restart Claude if it's currently running
+2. The server will be available as "uptime-agent" in Claude's MCP server list
+2025-04-26T08:52:54.920Z - Claude has been restarted.
