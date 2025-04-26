@@ -1,6 +1,6 @@
 {
   "name": "uptime-agent-mcp",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "MCP Server for uptime-agent.io",
   "license": "MIT",
   "type": "module",

@@ -83,13 +83,19 @@ function promptForApiKey() {
     console.log("\n=== uptime-agent.io Setup ===");
     console.log("This tool will configure Claude to work with uptime-agent.io");
     console.log("You'll need your uptime-agent.io API key to continue.");
-    console.log("You can find your API key in your account dashboard at https://uptime-agent.io");
-    
+    console.log(
+      "You can find your API key in your account dashboard at https://uptime-agent.io"
+    );
+
     rl.question("\nPlease enter your uptime-agent.io API Key: ", (apiKey) => {
       rl.close();
       if (!apiKey || apiKey.trim() === "") {
-        console.log("\nNo API Key provided. Using default configuration without API key.");
-        console.log("You'll need to add your API key manually later in Claude's settings.");
+        console.log(
+          "\nNo API Key provided. Using default configuration without API key."
+        );
+        console.log(
+          "You'll need to add your API key manually later in Claude's settings."
+        );
         resolve(null);
       } else {
         console.log("\nThank you! Setting up with the provided API key.");
@@ -154,6 +160,37 @@ async function restartClaude() {
   }
 }
 
+// Function to detect if running via npx
+function isRunningViaNpx() {
+  // Multiple checks to determine if running via npx
+  const importUrlCheck = import.meta.url.includes("node_modules");
+  const npmExecPathCheck = process.env.npm_execpath?.includes("npx");
+  const npxCacheCheck = __dirname.includes(".npx-cache") || __dirname.includes("_npx");
+  const npmConfigCheck = process.env.npm_config_argv?.includes("npx");
+  const nodePathCheck = process.env.NODE_PATH?.includes("npx");
+  const cmdPathCheck = process.env._?.includes("npx");
+  
+  // Additional check specifically for our setup - when run via "npx uptime-agent-mcp setup"
+  const runningFromPublishedPackage = !__dirname.includes("AVIMBU/uptime_agent_mcp");
+  
+  // For debugging - log all detection points
+  logToFile(`NPX detection - importUrlCheck: ${importUrlCheck}`);
+  logToFile(`NPX detection - npmExecPathCheck: ${npmExecPathCheck}`);
+  logToFile(`NPX detection - npxCacheCheck: ${npxCacheCheck}`);
+  logToFile(`NPX detection - npmConfigCheck: ${npmConfigCheck}`);
+  logToFile(`NPX detection - nodePathCheck: ${nodePathCheck}`);
+  logToFile(`NPX detection - cmdPathCheck: ${cmdPathCheck}`);
+  logToFile(`NPX detection - runningFromPublishedPackage: ${runningFromPublishedPackage}`);
+  logToFile(`NPX detection - __dirname: ${__dirname}`);
+  
+  // Consider it running via npx if any of these checks pass
+  const isNpx = importUrlCheck || npmExecPathCheck || npxCacheCheck || 
+                npmConfigCheck || nodePathCheck || cmdPathCheck || runningFromPublishedPackage;
+  
+  logToFile(`Final NPX detection result: ${isNpx}`);
+  return isNpx;
+}
+
 // Check if config file exists and create default if not
 if (!existsSync(claudeConfigPath)) {
   logToFile(`Claude config file not found at: ${claudeConfigPath}`);
@@ -191,28 +228,34 @@ function isDebugMode() {
 
 // Main function to export for ESM compatibility
 export default async function setup() {
+  // Log execution context for debugging
+  logToFile(`Running setup from directory: ${__dirname}`);
+  logToFile(`Process arguments: ${process.argv.join(' ')}`);
+  
   // Ask for API key
   const apiKey = await promptForApiKey();
-  
+
   const debugMode = isDebugMode();
   if (debugMode) {
     logToFile(
       "Debug mode enabled. Will configure with Node.js inspector options."
     );
   }
+  
   try {
     // Read existing config
     const configData = readFileSync(claudeConfigPath, "utf8");
     const config = JSON.parse(configData);
 
     // Determine if running through npx or locally
-    const isNpx = import.meta.url.includes("node_modules");
+    const isNpx = isRunningViaNpx();
+    logToFile(`Running via NPX: ${isNpx}`);
 
     // Prepare the new server config based on OS
     let serverConfig;
-    
+
     // Base environment variables with API key if provided
-    const envVars = apiKey ? { UPTIME_AGENT_API_KEY: apiKey } : {};
+    const envVars = apiKey ? { UPTIME_API_KEY: apiKey } : {};
 
     if (debugMode) {
       // Add debug environment variables
@@ -262,6 +305,7 @@ export default async function setup() {
     } else {
       // Standard configuration without debug
       if (isNpx) {
+        logToFile("Configuring for NPX execution");
         serverConfig = {
           command: isWindows ? "npx.cmd" : "npx",
           args: ["uptime-agent-mcp@latest"],
@@ -270,6 +314,7 @@ export default async function setup() {
       } else {
         // For local installation, use absolute path to handle Windows properly
         const indexPath = join(__dirname, "dist", "index.js");
+        logToFile(`Configuring for local execution from: ${indexPath}`);
         serverConfig = {
           command: "node",
           args: [
