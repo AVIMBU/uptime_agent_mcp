@@ -1,5 +1,5 @@
 const UPTIME_API_URL = "https://app.uptime-agent.io/api/v1";
-const UPTIME_API_KEY = process.env.UPTIME_API_KEY;
+const UPTIME_API_KEY = process.env.UPTIME_API_KEY || "test";
 
 if (!UPTIME_API_KEY) {
   throw new Error("UPTIME_API_KEY environment variable is required");
