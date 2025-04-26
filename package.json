@@ -1,6 +1,6 @@
 {
   "name": "uptime-agent-mcp",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "MCP Server for uptime-agent.io",
   "license": "MIT",
   "type": "module",
@@ -13,12 +13,19 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "tsc && shx cp setup-claude-server.js dist/ && shx chmod +x dist/*.js",
     "prepare": "npm run build",
     "watch": "tsc --watch",
+    "start": "node dist/index.js",
     "setup": "npm install && npm run build && node setup-claude-server.js",
-    "setup:debug": "npm install && npm run build && node setup-claude-server.js --debug"
+    "setup:debug": "npm install && npm run build && node setup-claude-server.js --debug",
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "mcp",
