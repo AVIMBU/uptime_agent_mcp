@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/avimbu-uptime-agent-mcp-badge.png)](https://mseep.ai/app/avimbu-uptime-agent-mcp)
+
 # 🚀 Uptime Agent MCP Server
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
